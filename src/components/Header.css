@@ -1,0 +1,183 @@
+/* --------------------header---------------- */
+
+.header{
+    width: 100%;
+    height: 92px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.header_upper > span{
+    padding: 6px;
+    background-color: #f14d54;
+    display: block;    
+}
+
+.header_left{
+    width: 60%;
+}
+
+.header_left > img{
+    width: 150px;
+    height: 50px;
+    padding: 5px;
+}
+
+.header_right{
+    display: flex;
+    align-items: center;
+}
+
+.header_list{
+    display: flex;
+    margin-right: 20px;
+    
+}
+.header_list > li{
+    list-style-type: none;
+    color: #f14d54;
+    margin-right: 8px;
+    /* padding: 9px; */
+}
+.header_list > li > a{
+    text-decoration: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    color: #f14d54;
+    
+}
+
+
+.header_cart{
+    width: 90px;
+    height: 20px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #414141;
+}
+
+.header_cart > img{
+    width: 20px;
+    height: 20px;
+}
+
+
+/* -------------------search--------------- */
+
+.search_container{
+    width: 100%;
+    height: 80px;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#search_text{
+    width: 422px;
+    height: 40px;
+    color: rgb(33, 33, 33);
+}
+
+.button_container{
+    margin-left: 10px;
+}
+
+
+.button{
+    width: 120px;
+}
+
+.button > span{
+    text-transform: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+
+/* .title_stack{
+    align-items: center;
+    justify-content: center;
+} */
+
+.navLink_header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.navLink_list{
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    display: flex;
+    list-style-type: none;
+}
+
+.navLink_list > li{
+    text-decoration: none;
+    margin: 3px;
+    font-size: 18px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.navLink_list > li >a{
+    color: #414141;
+}
+
+.title_underline{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.title_underline > h1{
+    align-items: center;
+    position: relative;
+    text-align: center;
+    color: #414141;
+}
+
+.title_underline > h1::after{
+    content: '';
+    width: 40%;
+    height: 2px;
+    background: #f14d54;
+    position: absolute;
+    bottom: -25px;
+    left: 28%;
+}
+
+
+/* ---------------footer------------------- */
+
+.footer{
+    padding: 40px 0;
+    background-color: #f9f9f9;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer_stack{
+    align-items: center;
+}
+
+.footer_stack > img{
+    width: 170px;
+    height: 60px;
+    padding: 5px;
+}
+
+.footer_stack > p{
+    font-size: 13px;
+    font-weight: 300;
+    color: #929292;
+}
+/* line-height: 1.8; */
