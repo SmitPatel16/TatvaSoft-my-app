@@ -1,4 +1,30 @@
-form{
+.title_underline{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.title_underline > h1{
+    align-items: center;
+    position: relative;
+    text-align: center;
+    color: #414141;
+}
+
+.title_underline > h1::after{
+    content: '';
+    width: 40%;
+    height: 2px;
+    background: #f14d54;
+    position: absolute;
+    bottom: -25px;
+    left: 28%;
+}
+
+
+.registration_form{
     margin: 60px;
     margin-bottom: 100px;
     /* position: relative ; */
@@ -50,7 +76,6 @@ form{
 .input_field{
     width: 530px;
     height: 40px;
-    
 }
 
 /* .register_input_field{
@@ -62,10 +87,11 @@ form{
     margin-bottom: 30px;
 } 
 
+/* 
 .input_field_email{
     width: 1147px;
     height: 40px;
-}
+} */
 
 /* ----------------Login Information--------- */
 
@@ -107,4 +133,10 @@ form{
     color: white;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 20px;   
+}
+
+
+.form-error{
+    color: red;
+    font-size: 15px;
 }

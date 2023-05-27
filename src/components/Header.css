@@ -130,6 +130,7 @@
     color: #414141;
 }
 
+/* -------------below code is also used in login,registration */
 .title_underline{
     display: flex;
     align-items: center;
@@ -153,6 +154,9 @@
     bottom: -25px;
     left: 28%;
 }
+
+/* -------------------login,registration over here------- */
+
 
 
 /* ---------------footer------------------- */

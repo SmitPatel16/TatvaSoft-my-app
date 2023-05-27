@@ -1,0 +1,19 @@
+.product_list_table_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .product_list_table {
+    width: 100%;
+    max-width: 800px; 
+    /* padding: 20px; */
+     /* box-sizing: border-box; */
+    /* border: 1px solid #ccc; */
+    /* border-radius: 4px; */
+  }
+  
+.product_edit_btn{
+    margin-right: 15px;
+}

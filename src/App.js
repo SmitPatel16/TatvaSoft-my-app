@@ -4,10 +4,12 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import ProductList from './pages/ProductList';
 import {BrowserRouter, Route, Routes} from 'react-router-dom' ;
+// import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <>
+
       <BrowserRouter>
         <Routes>
           <Route path='/register' Component={Register}></Route>
