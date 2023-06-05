@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+// import Header from "../components/Header";
+// import Footer from "../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import './Register.css';
 import { Button, MenuItem, Select, Stack, TextField, ThemeProvider, colors, createTheme } from "@mui/material";
@@ -14,6 +14,8 @@ import { useEffect } from "react";
 // import * as Yup from 'yup';
 import { signUpSchema } from "../schemas";
 import userService from "../service/user_service";
+import authService from "../service/auth.service";
+import { toast } from "react-toastify";
 // import FormControl from "@mui/material";
 // import FormLabel from "@mui/material";
 //Formik, Form, Field,
@@ -36,27 +38,33 @@ function Register(){
         initialValues: {
             firstName:"",
             lastName:"",
-            emailAddress:"",
+            email:"",
             roleId: 0,
             password:"",
             confirmPassword:"",
         },
         
         validationSchema: signUpSchema,
-        onSubmit: (values, action) => {
-            console.log(values);
-            action.resetForm();
-            alert("First name: " + values.firstName + "\nLast name: " + values.lastName
-                + "\nEmail address: " + values.emailAddress
-                 );
-                 navigate('/login');
+        onSubmit: (data, values, action) => {
+            console.log("form data", data);
+            delete data.confirmPassword;
+            authService.create(data).then((res) => {
+                alert("Successssssssssss");
+                navigate('/login');
+                toast.success("User Successfully Registered");
+                action.resetForm();
+            });
+            // alert("First name: " + values.firstName + "\nLast name: " + values.lastName
+            //     + "\nEmail address: " + values.emailAddress
+            //      );
+            
         },
     });
 
 
 
 
-    const [roleList, setRoleList] = useState([]);
+const [roleList, setRoleList] = useState([]);
 
 const getRoles = () => {
   userService.getAllRoles()
@@ -101,7 +109,6 @@ useEffect(() => {
      return (
          <>
         <ThemeProvider theme={theme}>
-            <Header/>
             
             <div className="title_container">
                 <Stack direction="column" className="title_stack">
@@ -185,17 +192,17 @@ useEffect(() => {
                                     <p>Email Address *</p>
                                     <TextField 
                                         type="email"
-                                        id="emailAddress"
-                                        name="emailAddress"
+                                        id="email"
+                                        name="email"
                                         size="small"
                                         className="input_field"
                                         placeholder="Enter your Email Address"
-                                        value={values.emailAddress}
+                                        value={values.email}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
-                                    { errors.emailAddress &&  touched.emailAddress ? (
-                                        <p className="form-error">{errors.emailAddress}</p>
+                                    { errors.email &&  touched.email ? (
+                                        <p className="form-error">{errors.email}</p>
                                         ) : null}
                                     </Stack>
                                 </div>
@@ -223,8 +230,8 @@ useEffect(() => {
 
 
                                         <Select
-                                          id="role"
-                                          name="role"
+                                          id="roleId"
+                                          name="roleId"
                                           className="input_field"
                                           value={values.roleId}
                                           onChange={handleChange}
@@ -237,12 +244,12 @@ useEffect(() => {
                                           ))}
                                         </Select>
 
-                                        {roleList.length > 0 && 
+                                        {/* {roleList.length > 0 && 
                                             roleList.map((role) => (
                                                 <MenuItem value={role.id} key={"name" + role.id}>
                                                     {role.name}
                                                 </MenuItem>
-                                            ))}
+                                            ))} */}
                                         {/* </FormControl> */}
                                     </Stack>
                                 </div>
@@ -300,7 +307,6 @@ useEffect(() => {
                 </div>
         </form>
                 
-        <Footer/>
         </ThemeProvider>    
         </>
     );

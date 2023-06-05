@@ -1,13 +1,17 @@
 import React from "react";
 import './Login.css';
 // import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import Register from "./Register";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+// import Header from "../components/Header";
+// import Footer from "../components/Footer";
 import { createTheme, ThemeProvider, Button, Stack, colors, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { signInSchema } from "../schemas";
+import authService from "../service/auth.service";
+import { toast } from "react-toastify";
+import { useAuthContext } from "../context/auth.context";
+import { RoutePaths } from "../utils/routePaths";
 
 const theme = createTheme({
     palette : {
@@ -22,19 +26,34 @@ function Login(){
     // const [valueEmail, setValueEmail] = useState('')
     // const [valuePass, setValuePass] = useState('')
 
-    const { values, errors, touched, handleBlur, handleChange } = useFormik({
+    const authContext = useAuthContext();
+
+    const navigate = useNavigate();
+
+    const { values, errors, touched, handleSubmit, handleBlur, handleChange } = useFormik({
         initialValues: {
-            emailAddress:"",
+            email:"",
             password:""
         },
-        validationSchema:signInSchema
+        validationSchema:signInSchema,
+        onSubmit : (values) => {
+            console.log("Login values are ",values);
+            authService.login(values).then((res) => {
+                delete res._id;
+                delete res.__v;
+                // authContext.setUser(res);
+                toast.success("Login Successful");
+                console.log("Successsssss Login");
+                authContext.setUser(res);
+                navigate(RoutePaths.BookListing);
+            })
+        }
     })
 
 
     return (
         <>
         <ThemeProvider theme={theme} >
-            <Header/>
             <div className="title_container">
                 <Stack direction="column" className="title_stack">
                     <div className="navlink_header">
@@ -79,12 +98,12 @@ function Login(){
                         <p>If you have an account with us, please log in.</p>
                     </div>
                     <Stack direction="column" className="right_field">
-                        <form autoComplete="off">
+                        <form onSubmit={handleSubmit}>
                         <Stack direction="column" className="login_input_container">
                             <p>Email Address *</p>
                             <TextField 
                                 type="email"
-                                name="emailAddress"
+                                name="email"
                                 required 
                                 size="small"
                                 placeholder="Enter your email" 
@@ -97,8 +116,8 @@ function Login(){
                                 // error={!valueEmail}
                                 // helperText={!valueEmail ? 'This field is Required' : ''}
                                 />
-                                { errors.emailAddress &&  touched.emailAddress ? (
-                                        <p className="form-error">{errors.emailAddress}</p>
+                                { errors.email &&  touched.email ? (
+                                        <p className="form-error">{errors.email}</p>
                                         ) : null}
                         </Stack>
 
@@ -119,18 +138,17 @@ function Login(){
                                 <p className="form-error">{errors.password}</p>
                                 ) : null}
                         </Stack>
-                        </form>
                         <Stack direction="column" className="login_right_btn">
-                            <Button color="left_btn" variant="contained" className="login_right_btn" >
+                            <Button type="submit" color="left_btn" variant="contained" className="login_right_btn" >
                                 <p id="btn_text">Login</p>
                             </Button>
                         </Stack>
+                        </form>
 
                     </Stack>
                 </Stack>
             </Stack>
 
-            <Footer/>
         </ThemeProvider>
         </>
     );
